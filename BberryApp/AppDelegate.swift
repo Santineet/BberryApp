@@ -23,13 +23,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
 //           let logoVC = mainStoryboard.instantiateViewController(withIdentifier: "logoVC") as! LogoController
 //        window?.rootViewController = logoVC
-//        
+//
+        customizeNavigationBar()
         window?.backgroundColor = .white
         window?.makeKeyAndVisible()
         
         return true
     }
 
+    
+    func customizeNavigationBar(){
+        UINavigationBar.appearance().tintColor = #colorLiteral(red: 0.1294117647, green: 0.2431372549, blue: 0.3725490196, alpha: 1)
+        UINavigationBar.appearance().alpha = 1.0
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().barTintColor = #colorLiteral(red: 0.968627451, green: 0.9725490196, blue: 0.9803921569, alpha: 1)
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage
+            = UIImage(named: "ic_back")
+        UINavigationBar.appearance().backIndicatorImage = UIImage(named: "ic_back")
+    }
+
+    
 //    // MARK: UISceneSession Lifecycle
 //
 //    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

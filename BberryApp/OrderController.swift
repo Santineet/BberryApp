@@ -133,6 +133,7 @@ class OrderController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.968627451, green: 0.9725490196, blue: 0.9803921569, alpha: 1)
+        
         addSubwiews()
         backArrowConstraints()
         basketTextConstraints()
@@ -152,7 +153,7 @@ class OrderController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
           super.viewWillDisappear(animated)
-          self.navigationController?.setNavigationBarHidden(false, animated: animated)
+          self.navigationController?.setNavigationBarHidden(true, animated: animated)
       }
 
       override func viewWillAppear(_ animated: Bool) {
@@ -252,8 +253,8 @@ class OrderController: UIViewController {
     }
     
     @objc func orderButtontapped() {
-        print("Order button tapped")
+        let registrationVC = RegistrationController()
+        navigationController?.pushViewController(registrationVC, animated: true)
     }
-
 
 }
