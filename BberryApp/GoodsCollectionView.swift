@@ -60,6 +60,5 @@ class GoodsCollectionView: UICollectionView, UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Select")
     }
-    
 
 }

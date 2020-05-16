@@ -100,11 +100,46 @@ extension UIView {
     func dropShadow() {
         layer.masksToBounds = false
         layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
-        layer.shadowOpacity = 1
-        layer.shadowOffset = CGSize(width: 0, height: 8)
+        layer.shadowOpacity = 0.3
+        layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowRadius = 20
-        layer.shouldRasterize = true
-        layer.rasterizationScale = true ? UIScreen.main.scale : 1
     }
     
+}
+
+extension NSObject {
+    static var className: String {
+        return String(describing: self)
+    }
+}
+
+extension UIView {
+    func addGradient() {
+        let layer : CAGradientLayer = CAGradientLayer()
+        layer.frame.size = self.frame.size
+        layer.colors = [
+          UIColor(red: 0.988, green: 0.855, blue: 0.561, alpha: 1).cgColor,
+          UIColor(red: 0.98, green: 0.741, blue: 0.094, alpha: 1).cgColor
+        ]
+        layer.locations = [0, 1]
+        layer.endPoint = CGPoint(x: 0.75, y: 0.5)
+        layer.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 0, b: 1, c: -1, d: 0, tx: 0.94, ty: 0))
+        layer.bounds = self.bounds.insetBy(dx: -0.5*self.bounds.size.width, dy: -0.5*self.bounds.size.height)
+        layer.position = self.center
+        layer.cornerRadius = CGFloat(frame.height / 2)
+        
+        layer.addSublayer(layer)
+    }
+}
+
+
+
+extension String {
+    func widthWithConstrainedHeight(_ height: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: CGFloat.greatestFiniteMagnitude, height: height)
+        let boundingBox = self.boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+
+        return ceil(boundingBox.width)
+    }
+
 }

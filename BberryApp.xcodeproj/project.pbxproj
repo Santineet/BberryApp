@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		2EE7977E246EF18400C8BC55 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2EE7977C246EF18400C8BC55 /* Roboto-Medium.ttf */; };
 		2EE7977F246EF18400C8BC55 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2EE7977D246EF18400C8BC55 /* Roboto-Bold.ttf */; };
+		2EE79786246FC04F00C8BC55 /* GoodsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE79784246FC04F00C8BC55 /* GoodsTableCell.swift */; };
+		2EE79787246FC04F00C8BC55 /* GoodsTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EE79785246FC04F00C8BC55 /* GoodsTableCell.xib */; };
+		2EE7978E246FCB0000C8BC55 /* GoodsCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7978C246FCB0000C8BC55 /* GoodsCategoryCell.swift */; };
+		2EE7978F246FCB0000C8BC55 /* GoodsCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EE7978D246FCB0000C8BC55 /* GoodsCategoryCell.xib */; };
+		2EE79793246FEB8200C8BC55 /* GoodsCategoryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE79792246FEB8200C8BC55 /* GoodsCategoryTableCell.swift */; };
+		2EE79795246FEB9500C8BC55 /* GoodsCategoryTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EE79794246FEB9500C8BC55 /* GoodsCategoryTableCell.xib */; };
 		810AB29F2459E0C9006F8682 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810AB29E2459E0C9006F8682 /* MapController.swift */; };
 		81A9D0B124636F740085AEA9 /* GoodsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A9D0B024636F740085AEA9 /* GoodsController.swift */; };
 		81A9D0B324637F570085AEA9 /* GoodsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A9D0B224637F570085AEA9 /* GoodsModel.swift */; };
@@ -32,6 +38,12 @@
 /* Begin PBXFileReference section */
 		2EE7977C246EF18400C8BC55 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		2EE7977D246EF18400C8BC55 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		2EE79784246FC04F00C8BC55 /* GoodsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsTableCell.swift; sourceTree = "<group>"; };
+		2EE79785246FC04F00C8BC55 /* GoodsTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodsTableCell.xib; sourceTree = "<group>"; };
+		2EE7978C246FCB0000C8BC55 /* GoodsCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCategoryCell.swift; sourceTree = "<group>"; };
+		2EE7978D246FCB0000C8BC55 /* GoodsCategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodsCategoryCell.xib; sourceTree = "<group>"; };
+		2EE79792246FEB8200C8BC55 /* GoodsCategoryTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCategoryTableCell.swift; sourceTree = "<group>"; };
+		2EE79794246FEB9500C8BC55 /* GoodsCategoryTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodsCategoryTableCell.xib; sourceTree = "<group>"; };
 		810AB29E2459E0C9006F8682 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		81A9D0B024636F740085AEA9 /* GoodsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsController.swift; sourceTree = "<group>"; };
 		81A9D0B224637F570085AEA9 /* GoodsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsModel.swift; sourceTree = "<group>"; };
@@ -88,6 +100,12 @@
 				81A9D0BF246903A50085AEA9 /* GoodsCollectionCell.xib */,
 				81FE85AD246E56B600B74D56 /* OrderTableCell.swift */,
 				81FE85AE246E56B600B74D56 /* OrderTableCell.xib */,
+				2EE79784246FC04F00C8BC55 /* GoodsTableCell.swift */,
+				2EE79785246FC04F00C8BC55 /* GoodsTableCell.xib */,
+				2EE7978C246FCB0000C8BC55 /* GoodsCategoryCell.swift */,
+				2EE7978D246FCB0000C8BC55 /* GoodsCategoryCell.xib */,
+				2EE79792246FEB8200C8BC55 /* GoodsCategoryTableCell.swift */,
+				2EE79794246FEB9500C8BC55 /* GoodsCategoryTableCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -216,8 +234,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				81CEBF9E2458D7C400F41118 /* RobotoRegular.ttf in Resources */,
+				2EE79795246FEB9500C8BC55 /* GoodsCategoryTableCell.xib in Resources */,
+				2EE7978F246FCB0000C8BC55 /* GoodsCategoryCell.xib in Resources */,
 				81CEBF95245736A700F41118 /* LaunchScreen.storyboard in Resources */,
 				81A9D0C1246903A60085AEA9 /* GoodsCollectionCell.xib in Resources */,
+				2EE79787246FC04F00C8BC55 /* GoodsTableCell.xib in Resources */,
 				2EE7977E246EF18400C8BC55 /* Roboto-Medium.ttf in Resources */,
 				81CEBF92245736A700F41118 /* Assets.xcassets in Resources */,
 				81CEBF902457369E00F41118 /* Main.storyboard in Resources */,
@@ -238,10 +259,13 @@
 				81A9D0B82463C3470085AEA9 /* OrderController.swift in Sources */,
 				81FE85AF246E56B600B74D56 /* OrderTableCell.swift in Sources */,
 				81A9D0B124636F740085AEA9 /* GoodsController.swift in Sources */,
+				2EE7978E246FCB0000C8BC55 /* GoodsCategoryCell.swift in Sources */,
 				81A9D0BC2464D3B00085AEA9 /* Extensions.swift in Sources */,
 				81A9D0C4246909440085AEA9 /* GoodsCollectionView.swift in Sources */,
+				2EE79793246FEB8200C8BC55 /* GoodsCategoryTableCell.swift in Sources */,
 				81CEBF8D2457369E00F41118 /* LogoController.swift in Sources */,
 				81A9D0B324637F570085AEA9 /* GoodsModel.swift in Sources */,
+				2EE79786246FC04F00C8BC55 /* GoodsTableCell.swift in Sources */,
 				81A9D0C62469550E0085AEA9 /* OrderTableView.swift in Sources */,
 				810AB29F2459E0C9006F8682 /* MapController.swift in Sources */,
 				81CEBF892457369E00F41118 /* AppDelegate.swift in Sources */,

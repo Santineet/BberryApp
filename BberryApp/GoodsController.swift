@@ -24,10 +24,23 @@ import UIKit
 
 class GoodsController: UIViewController {
     
+    private var goods = GoodsModel.fetchSushi() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     private var currentState: State = .closed
     private var leadingConstraint = NSLayoutConstraint()
-    private var goodsCollection = GoodsCollectionView()
-        
+//    private var goodsCollection = GoodsCollectionView()
+ 
+    let tableView: UITableView = {
+        let tv = UITableView()
+        tv.separatorStyle = .none
+        tv.backgroundColor = #colorLiteral(red: 0.968627451, green: 0.9725490196, blue: 0.9803921569, alpha: 1)
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        return tv
+    }()
+    
     let opacityView : UIView = {
         let opacity = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         opacity.backgroundColor = .black
@@ -123,7 +136,7 @@ class GoodsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-     //   searchController.searchResultsUpdater = self
+        self.view.backgroundColor = #colorLiteral(red: 0.968627451, green: 0.9725490196, blue: 0.9803921569, alpha: 1)
         setupNavigationBar()
         addInSubwies()
         menuSlideTextureConstraine()
@@ -133,15 +146,13 @@ class GoodsController: UIViewController {
         userInfoButtonConstraints()
         aboutServiceConstraints()
         catalogLabelConstraints()
-        goodsCollectionConstraints()
-        
-        goodsCollection.set(cells: GoodsModel.fetchSushi())
+        goodsTableViewConstraints()
+        setupTableView()
     }
     
     private func addInSubwies() {
-       
        view.addSubview(catalogLabel)
-       view.addSubview(goodsCollection)
+       view.addSubview(tableView)
        view.addSubview(opacityView)
        view.addSubview(menuSlideTexture)
        menuSlideTexture.addSubview(logoMenu)
@@ -167,15 +178,21 @@ class GoodsController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-          super.viewWillDisappear(animated)
-          self.navigationController?.setNavigationBarHidden(true, animated: animated)
-      }
-
-      override func viewWillAppear(_ animated: Bool) {
-          super.viewWillAppear(animated)
-          self.navigationController?.setNavigationBarHidden(false, animated: animated)
-      }
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(GoodsTableCell.nib, forCellReuseIdentifier: GoodsTableCell.identifier)
+        tableView.register(GoodsCategoryTableCell.nib, forCellReuseIdentifier: GoodsCategoryTableCell.identifier)
+    }
     
     func catalogLabelConstraints() {
         catalogLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12).isActive = true
@@ -224,15 +241,14 @@ class GoodsController: UIViewController {
         aboutServiceButton.trailingAnchor.constraint(equalTo: menuSlideTexture.trailingAnchor).isActive = true
     }
     
-    func goodsCollectionConstraints() {
-        goodsCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        goodsCollection.topAnchor.constraint(equalTo: catalogLabel.bottomAnchor, constant: 8).isActive = true
-        goodsCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        goodsCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+    func goodsTableViewConstraints() {
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: catalogLabel.bottomAnchor, constant: 8).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
     }
     
     @objc func menuButtonTapped(recognizer: UIButton) {
-    
          let state = currentState.opposite
          let transitionAnimator = UIViewPropertyAnimator(duration: 1, dampingRatio: 1, animations: {
              switch state {
@@ -267,7 +283,6 @@ class GoodsController: UIViewController {
          transitionAnimator.startAnimation()
          
      }
-
     
     @objc func cardButtonTapped() {
         let orderVC = OrderController()
@@ -295,10 +310,48 @@ class GoodsController: UIViewController {
 }
 
 extension GoodsController : UISearchResultsUpdating {
-    
     func updateSearchResults(for searchController: UISearchController) {
         print("")
     }
 
 }
 
+extension GoodsController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: GoodsCategoryTableCell.identifier, for: indexPath) as! GoodsCategoryTableCell
+            cell.setupCell(with: GoodsModel.fetchSushi(), delegate: self)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: GoodsTableCell.identifier, for: indexPath) as! GoodsTableCell
+            cell.setupCell(with: goods)
+            return cell
+        }
+    }
+        
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 40
+        }
+        return 350
+    }
+}
+
+extension GoodsController: GoodsCategoryDelegate {
+    func changedCategory(at index: Int?) {
+        if let index = index {
+            let items = GoodsModel.fetchSushi()
+            goods = items.filter(){ $0.category == items[index].category }
+        } else {
+            goods = GoodsModel.fetchSushi()
+        }
+    }
+}
